@@ -11,4 +11,4 @@ The player wins points on catching pumpkins and can get promoted to level to by 
 
 Music and sound effects are added to improve in-game experience. 
 
-Developing the game was a challenging and entertaining task and we learnt a lot from the 12 hours of development and we're planning to make further progress in this project.
+Developing the game was a challenging and entertaining task and we learnt a lot from the 12 hours of development. We're planning to make further progress in this project.
