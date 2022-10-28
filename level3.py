@@ -3,7 +3,6 @@ import pygame
 import os
 from random import randrange
 from menu import *
-from level3 import level3
 
 # Text Renderer
 def text_format(message, textFont, textSize, textColor):
@@ -22,7 +21,7 @@ green = (0, 255, 0)
 blue = (0, 0, 255)
 yellow = (255, 255, 0)
 
-def level2():
+def level3():
     pygame.init()
 
     # Screen size
@@ -217,7 +216,7 @@ def level2():
                     pumpkins_y[i] = -1000
 
         if(score == 20):
-            level3()
+            main_menu()
             break;
 
         #Out
