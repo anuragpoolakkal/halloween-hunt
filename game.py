@@ -3,6 +3,7 @@ import pygame
 import os
 from pygame import mixer
 from random import randrange
+from level2 import level2
 
 # Text Renderer
 def text_format(message, textFont, textSize, textColor):
@@ -97,7 +98,7 @@ for i in range(enemy_count):
     enemies_x.append(randrange(0, width))
     enemies_y.append(randrange(-200, 0))
 
-pumpkin_count = 3
+pumpkin_count = 5
 pumpkins_x = []
 pumpkins_y = []
 for i in range(pumpkin_count):
@@ -118,9 +119,9 @@ while run:
     win.blit(bg, (0, 0))
 
     # Steps
-    for x in range(len(steps_x)):
-        step = pygame.transform.scale(step, (steps_width[x], steps_height[x]))
-        win.blit(step, (steps_x[x], steps_y[x]))
+    # for x in range(len(steps_x)):
+    #     step = pygame.transform.scale(step, (steps_width[x], steps_height[x]))
+    #     win.blit(step, (steps_x[x], steps_y[x]))
 
     # Player
     win.blit(player, (player_x, player_y))
@@ -213,6 +214,10 @@ while run:
             if(player_x >= (pumpkins_x[i] - 60) and player_x <= (pumpkins_x[i] + 60)):
                 score += 1
                 pumpkins_y[i] = -1000
+
+    if(score == 20):
+        level2()
+        break;
 
     #Out
     for i in range(enemy_count):
