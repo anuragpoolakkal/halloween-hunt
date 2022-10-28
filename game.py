@@ -21,14 +21,6 @@ green = (0, 255, 0)
 blue = (0, 0, 255)
 yellow = (255, 255, 0)
 
-# Game Fonts
-font = "Retro.ttf"
-
-
-# Game Framerate
-clock = pygame.time.Clock()
-FPS = 30
-
 pygame.init()
 
 # Screen size
@@ -58,6 +50,9 @@ player.convert()
 
 heart = pygame.image.load(os.path.join("images/heart.png"))
 heart = pygame.transform.scale(heart, (60, 60))
+
+score_icon = pygame.image.load(os.path.join("images/pumpkin.png"))
+score_icon = pygame.transform.scale(score_icon, (40, 40))
 
 floor = pygame.image.load(os.path.join("images/floor.png"))
 floor = pygame.transform.scale(floor, (width, 50))
@@ -102,14 +97,14 @@ for i in range(enemy_count):
     enemies_x.append(randrange(0, width))
     enemies_y.append(randrange(-200, 0))
 
-
-
 pumpkin_count = 3
 pumpkins_x = []
 pumpkins_y = []
 for i in range(pumpkin_count):
     pumpkins_x.append(randrange(0, width))
     pumpkins_y.append(randrange(-200, 0))
+
+score = 0
 
 while run:
     # pygame.time.delay(10)
@@ -151,6 +146,14 @@ while run:
 
     win.blit(floor, (floor_x, floor_y))
 
+    #Score
+    win.blit(score_icon, (width - hearts_x[0], 100))
+    myfont = pygame.font.SysFont("Segoe UI", 30)
+    # apply it to text on a label
+    label = myfont.render(str(score), 1, white)
+    # put the label object on the screen at point x=100, y=100
+    win.blit(label, (width - hearts_x[0] + 50, 100))
+
     # Pumpkin
     for i in range(pumpkin_count):
         win.blit(pumpkin, (pumpkins_x[i], pumpkins_y[i]))
@@ -159,7 +162,7 @@ while run:
     if(pumpkins_y[i] > height):
         pumpkins_x.clear()
         pumpkins_y.clear()
-        for i in range(5):
+        for i in range(pumpkin_count):
             pumpkins_x.append(randrange(0, width))
             pumpkins_y.append(randrange(-100, 0))
 
@@ -176,7 +179,7 @@ while run:
         if(enemies_y[i] > height):
             enemies_x.clear()
             enemies_y.clear()
-            for i in range(5):
+            for i in range(enemy_count):
                 enemies_x.append(randrange(0, width))
                 enemies_y.append(randrange(-100, 0))
 
@@ -203,6 +206,9 @@ while run:
     #     if(hearts == 0):
     #         break
 
+
+    #Scoring
+    
 
     if hearts <= 0:
         print("Game Over !!")
