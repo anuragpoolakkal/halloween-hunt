@@ -1,14 +1,10 @@
 from http.client import PROXY_AUTHENTICATION_REQUIRED
 import pygame
 import os
-from pygame import mixer
 from random import randrange
-from level2 import level2
 from menu import *
 
 # Text Renderer
-
-
 def text_format(message, textFont, textSize, textColor):
     newFont = pygame.font.Font(textFont, textSize)
     newText = newFont.render(message, 0, textColor)
@@ -25,23 +21,7 @@ green = (0, 255, 0)
 blue = (0, 0, 255)
 yellow = (255, 255, 0)
 
-
-# jump  sound
-jump_fx = pygame.mixer.Sound('audio/jump.wav')
-jump_fx.set_volume(0.05)
-
-
-# score  sound
-score_fx = pygame.mixer.Sound('audio/score.wav')
-score_fx.set_volume(0.05)
-
-
-# game over  sound
-game_over_fx = pygame.mixer.Sound('audio/game-over.wav')
-game_over_fx.set_volume(0.05)
-
-
-def level1():
+def level3():
     pygame.init()
 
     # Screen size
@@ -49,7 +29,7 @@ def level1():
     height = 800
 
     win = pygame.display.set_mode((width, height))
-    bg_img = pygame.image.load(os.path.join("images", "halloween.png"))
+    bg_img = pygame.image.load(os.path.join("images", "butk.png"))
     bg = pygame.transform.scale(bg_img, (width, height))
 
     i = 0
@@ -112,7 +92,7 @@ def level1():
 
     enemy_count = 3
 
-    enemies_y = []
+    enemies_y = [] 
     enemies_x = []
     for i in range(enemy_count):
         enemies_x.append(randrange(0, width))
@@ -155,7 +135,6 @@ def level1():
         if jump is False and userInput[pygame.K_SPACE]:
             jump = True
         if jump is True:
-            jump_fx.play()
             player_y -= vel_y * 4
             vel_y -= 1
             if vel_y < -10:
@@ -168,7 +147,7 @@ def level1():
 
         win.blit(floor, (floor_x, floor_y))
 
-        # Score
+        #Score
         win.blit(score_icon, (width - hearts_x[0], 100))
         myfont = pygame.font.SysFont("Segoe UI", 30)
         # apply it to text on a label
@@ -209,7 +188,18 @@ def level1():
         if ((player_y + p_height) >= floor_y):
             player_y -= 30
 
+
+
+
+
+
+
+
+
         # Game over condition
+
+
+
 
         # if car_loc[0] == car2_loc[0] and car2_loc[1] > car_loc[1] - 250:
         #     car2_loc.center = right_lane, -200
@@ -217,36 +207,35 @@ def level1():
         #     if(hearts == 0):
         #         break
 
-        # Scoring
+
+        #Scoring
         for i in range(pumpkin_count):
             if(player_y >= (pumpkins_y[i] - 60) and player_y <= (pumpkins_y[i] + 60)):
                 if(player_x >= (pumpkins_x[i] - 60) and player_x <= (pumpkins_x[i] + 60)):
                     score += 1
-                    score_fx.play()
                     pumpkins_y[i] = -1000
 
-        if(score == 10):
-            level2()
-            break
+        if(score == 30):
+            print("YOU WON THE GAME!! 🎃🏆")
+            main_menu()
+            break;
 
-        # Out
+        #Out
         for i in range(enemy_count):
             if(player_y >= (enemies_y[i] - 60) and player_y <= (enemies_y[i] + 60)):
                 if(player_x >= (enemies_x[i] - 60) and player_x <= (enemies_x[i] + 60)):
                     hearts -= 1
-                    game_over_fx.play()
                     enemies_y[i] = -1000
+
 
         # for i in range(enemy_count):
 
         if hearts <= 0:
             print("Game Over !!")
             main_menu()
-            break
+            break;
 
         pygame.display.update()
 
     pygame.quit()
-
-
-main_menu()
+    

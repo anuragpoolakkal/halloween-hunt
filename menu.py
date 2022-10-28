@@ -1,6 +1,7 @@
 import pygame
 import button
 import game
+import os
 
 def draw_text(text, font, text_col, x, y):
   img = font.render(text, True, text_col)
@@ -20,6 +21,9 @@ font = pygame.font.SysFont("arialblack", 40)
 
 #define colours
 TEXT_COL = (255, 255, 255)
+
+bg_img = pygame.image.load(os.path.join("images", "bitlords_poster2.png"))
+screen.blit(bg_img, (0, 0))
 
 #load button images
 resume_img = pygame.image.load("images/button_resume.png").convert_alpha()
@@ -49,8 +53,6 @@ def main_menu():
   
   run = True
   while run:
-
-    screen.fill((52, 78, 91))
 
     #check if game is paused
     if game_paused == True:
