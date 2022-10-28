@@ -1,5 +1,6 @@
 import pygame
 import button
+import game
 
 def draw_text(text, font, text_col, x, y):
   img = font.render(text, True, text_col)
@@ -8,8 +9,8 @@ def draw_text(text, font, text_col, x, y):
 pygame.init()
 
 #create game window
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 1200
+SCREEN_HEIGHT = 800
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Main Menu")
@@ -33,10 +34,11 @@ back_img = pygame.image.load('images/button_back.png').convert_alpha()
 #create button instances
 resume_button = button.Button(304, 125, resume_img, 1)
 options_button = button.Button(297, 250, options_img, 1)
-quit_button = button.Button(336, 259, quit_img, 1)
 keys_button = button.Button(246, 325, keys_img, 1)
 back_button = button.Button(332, 450, back_img, 1)
-start_button = button.Button(304, 125, start_img, 1)
+start_button = button.Button(SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 200, start_img, 1)
+quit_button = button.Button((SCREEN_WIDTH / 2) - 65, SCREEN_HEIGHT / 2, quit_img, 1)
+
 
 def main_menu():
   #game variables
@@ -62,7 +64,7 @@ def main_menu():
       #check if the options menu is open
       
     else:
-      draw_text("Press ESPACE to pause", font, TEXT_COL, 160, 250)
+      game.level1()
 
     #event handler
     for event in pygame.event.get():
@@ -75,5 +77,3 @@ def main_menu():
     pygame.display.update()
 
   pygame.quit()
-
-main_menu()
