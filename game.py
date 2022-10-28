@@ -89,10 +89,12 @@ while run:
 
 
         # steps_x[x] =  steps_x[x] + 10 if steps_x[x] < width else steps_x[x] - 10 
-        if(jump):
-            if(player_x >= steps_x[x] and player_x <= steps_x[x]):
-                player_y = steps_y[x] + p_height
-
+        if(player_x >= steps_x[x] and player_x <= (steps_x[x] + steps_width[x])):
+            if(player_y >= steps_y[x] and player_y <= (steps_y[x] + steps_height[x])):
+                player_y = steps_y[x] - p_height
+        else:
+            player_y -= 10
+            
         win.blit(step, (steps_x[x], steps_y[x]))
 
     #Pumpkin
@@ -125,6 +127,10 @@ while run:
     if hearts <= 0:
         print("Game Over")
         pygame.quit()
+
+
+    # background music
+    # mixer.music.load('background')
     
     
     pygame.display.update()
