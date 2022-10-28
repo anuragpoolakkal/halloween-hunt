@@ -217,7 +217,7 @@ def level1():
                     score += 1
                     pumpkins_y[i] = -1000
 
-        if(score == 20):
+        if(score == 2):
             level2()
             break;
 
