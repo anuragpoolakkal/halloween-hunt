@@ -29,8 +29,12 @@ player = pygame.image.load(os.path.join("images/player.png"))
 player = pygame.transform.scale(player, (p_width, p_height))
 player.convert()
 
+heart = pygame.image.load(os.path.join("images/heart.png"))
+
 floor = pygame.image.load(os.path.join("images/floor.png"))
 floor = pygame.transform.scale(floor, (width, 50))
+
+step = pygame.image.load(os.path.join("images/floating_floor.png"))
 
 pumpkin = pygame.image.load(os.path.join("images/pumpkin.png"))
 pumpkin = pygame.transform.scale(pumpkin, (30, 30))
@@ -43,7 +47,13 @@ player_y = height - p_height
 floor_x = 0
 floor_y = height - 55
 
+steps_height = [50, 50, 50, 50]
+steps_width = [width * 0.1, width * 0.1, width * 0.2, width * 0.2]
+steps_y = [height - 200, height - 200, height - 200, height - 400]
+steps_x = [0, 400, 600, 0]
+
 while run:
+    # pygame.time.delay(10)
     #Setup
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -54,6 +64,25 @@ while run:
 
     #Floor
     win.blit(floor, (floor_x, floor_y))
+
+    #Steps
+    for x in range(len(steps_x)):
+        step = pygame.transform.scale(step, (steps_width[x], steps_height[x]))
+        # if(player)
+
+        # if(steps_x[x] < width):
+        #     steps_x[x] += 5
+        # else:
+        #     while(steps_x[x] >= 0):
+        #         steps_x[x] -= 5
+        
+        # if(player_y <= steps_y[x]):
+        #     player_y = steps_y[x]
+
+
+        # steps_x[x] =  steps_x[x] + 10 if steps_x[x] < width else steps_x[x] - 10 
+
+        win.blit(step, (steps_x[x], steps_y[x]))
 
     #Pumpkin
     for i in range(10):
@@ -79,6 +108,9 @@ while run:
     #Floor collision
     if((player_y + p_height) >= floor_y):
         player_y -= 30
+
+    #heart
+    
     
     pygame.display.update()
 
