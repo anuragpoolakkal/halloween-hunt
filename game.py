@@ -208,7 +208,21 @@ while run:
 
 
     #Scoring
-    
+    for i in range(pumpkin_count):
+        if(player_y >= (pumpkins_y[i] - 60) and player_y <= (pumpkins_y[i] + 60)):
+            if(player_x >= (pumpkins_x[i] - 60) and player_x <= (pumpkins_x[i] + 60)):
+                score += 1
+                pumpkins_y[i] = -1000
+
+    #Out
+    for i in range(enemy_count):
+        if(player_y >= (enemies_y[i] - 60) and player_y <= (enemies_y[i] + 60)):
+            if(player_x >= (enemies_x[i] - 60) and player_x <= (enemies_x[i] + 60)):
+                hearts -= 1
+                enemies_y[i] = -1000
+                            
+
+    # for i in range(enemy_count):
 
     if hearts <= 0:
         print("Game Over !!")
