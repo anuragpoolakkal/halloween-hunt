@@ -1,30 +1,85 @@
+from http.client import PROXY_AUTHENTICATION_REQUIRED
 import pygame
 import os
 
-# shape parameters
-size = width, height = (1200, 800)
-
-
 pygame.init()
-win = pygame.display.set_mode(size)
-bg_img = pygame.image.load(os.path.join("images", "level1_bg.png"))
-bg = pygame.transform.scale(bg_img, (1200, 800))
 
-#width = 1200
+#Screen size
+width = 1200
+height = 800
+
+win = pygame.display.set_mode((width, height))
+bg_img = pygame.image.load(os.path.join("images", "halloween.png"))
+bg = pygame.transform.scale(bg_img, (width, height))
 
 i = 0
 
 run = True
+
+vel_x = 10
+vel_y = 10
+
+jump = False
+
+run = True
+
+p_width = 50
+p_height = 90
+player = pygame.image.load(os.path.join("images/player.png"))
+player = pygame.transform.scale(player, (p_width, p_height))
+player.convert()
+
+floor = pygame.image.load(os.path.join("images/floor.png"))
+floor = pygame.transform.scale(floor, (width, 50))
+
+pumpkin = pygame.image.load(os.path.join("images/pumpkin.png"))
+pumpkin = pygame.transform.scale(pumpkin, (30, 30))
+
+pumpkins = [];
+
+player_x = 20
+player_y = height - p_height
+
+floor_x = 0
+floor_y = height - 55
+
 while run:
+    #Setup
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
 
     win.fill((0, 0, 0))
-
-    # Create looping background
     win.blit(bg, (0, 0))
 
+    #Floor
+    win.blit(floor, (floor_x, floor_y))
+
+    #Pumpkin
+    for i in range(10):
+        win.blit(pumpkin, (i * 10, i+10));
+
+    #Player
+    win.blit(player, (player_x, player_y))
+    userInput = pygame.key.get_pressed()
+    if userInput[pygame.K_LEFT] and player_x > 0:
+        player_x -= vel_x
+    if userInput[pygame.K_RIGHT] and player_x < width:
+        player_x += vel_x
+
+    if jump is False and userInput[pygame.K_SPACE]:
+        jump = True
+    if jump is True:
+        player_y -= vel_y * 4
+        vel_y -= 1
+        if vel_y < -10:
+            jump = False
+            vel_y = 10
+
+    #Floor collision
+    if((player_y + p_height) >= floor_y):
+        player_y -= 30
+    
     pygame.display.update()
 
 pygame.quit()
