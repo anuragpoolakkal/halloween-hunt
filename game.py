@@ -131,6 +131,6 @@ while run:
     # Start playing the song
     mixer.music.play()
 
-pygame.display.update()
+    pygame.display.update()
 
 pygame.quit()
