@@ -53,6 +53,9 @@ steps_width = [width * 0.1, width * 0.1, width * 0.2, width * 0.2]
 steps_y = [height - 200, height - 200, height - 200, height - 400]
 steps_x = [0, 400, 600, 0]
 
+hearts = 3
+hearts_x = [170, 120, 70]
+
 while run:
     # pygame.time.delay(10)
     #Setup
@@ -64,7 +67,8 @@ while run:
     win.blit(bg, (0, 0))
 
     #Lives
-    win.blit(heart, (width - 70, 30))
+    for i in range(hearts):
+        win.blit(heart, (width - hearts_x[i], 30))
 
     #Floor
     win.blit(floor, (floor_x, floor_y))
@@ -117,8 +121,10 @@ while run:
         player_y -= 30
 
 
-
-    #heart
+    #Game over condition
+    if hearts <= 0:
+        print("Game Over")
+        pygame.quit()
     
     
     pygame.display.update()
