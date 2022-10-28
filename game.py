@@ -1,6 +1,5 @@
 from http.client import PROXY_AUTHENTICATION_REQUIRED
 import pygame
-from pygame import mixer
 import os
 
 pygame.init()
@@ -125,11 +124,6 @@ while run:
         pygame.quit()
 
     # background music
-    mixer.init()
-    # Loading the song
-    mixer.music.load("./music/halloween_music.mp3")
-    # Start playing the song
-    mixer.music.play()
 
     pygame.display.update()
 
