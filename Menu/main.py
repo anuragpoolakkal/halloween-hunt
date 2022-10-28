@@ -32,9 +32,7 @@ back_img = pygame.image.load('images/button_back.png').convert_alpha()
 #create button instances
 resume_button = button.Button(304, 125, resume_img, 1)
 options_button = button.Button(297, 250, options_img, 1)
-quit_button = button.Button(336, 375, quit_img, 1)
-video_button = button.Button(226, 75, video_img, 1)
-audio_button = button.Button(225, 200, audio_img, 1)
+quit_button = button.Button(336, 250, quit_img, 1)
 keys_button = button.Button(246, 325, keys_img, 1)
 back_button = button.Button(332, 450, back_img, 1)
 
@@ -55,28 +53,17 @@ while run:
       #draw pause screen buttons
       if resume_button.draw(screen):
         game_paused = False
-      if options_button.draw(screen):
-        menu_state = "options"
       if quit_button.draw(screen):
         run = False
     #check if the options menu is open
-    if menu_state == "options":
-      #draw the different options buttons
-      if video_button.draw(screen):
-        print("Video Settings")
-      if audio_button.draw(screen):
-        print("Audio Settings")
-      if keys_button.draw(screen):
-        print("Change Key Bindings")
-      if back_button.draw(screen):
-        menu_state = "main"
+    
   else:
-    draw_text("Press SPACE to pause", font, TEXT_COL, 160, 250)
+    draw_text("Press Escape to pause", font, TEXT_COL, 160, 250)
 
   #event handler
   for event in pygame.event.get():
     if event.type == pygame.KEYDOWN:
-      if event.key == pygame.K_SPACE:
+      if event.key == pygame.K_ESCAPE:
         game_paused = True
     if event.type == pygame.QUIT:
       run = False
