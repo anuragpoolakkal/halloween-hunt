@@ -1,10 +1,11 @@
 from http.client import PROXY_AUTHENTICATION_REQUIRED
 import pygame
+from pygame import mixer
 import os
 
 pygame.init()
 
-#Screen size
+# Screen size
 width = 1200
 height = 800
 
@@ -40,7 +41,7 @@ step = pygame.image.load(os.path.join("images/floating_floor.png"))
 pumpkin = pygame.image.load(os.path.join("images/pumpkin.png"))
 pumpkin = pygame.transform.scale(pumpkin, (30, 30))
 
-pumpkins = [];
+pumpkins = []
 
 player_x = 20
 player_y = height - p_height
@@ -58,7 +59,7 @@ hearts_x = [170, 120, 70]
 
 while run:
     # pygame.time.delay(10)
-    #Setup
+    # Setup
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
@@ -66,14 +67,14 @@ while run:
     win.fill((0, 0, 0))
     win.blit(bg, (0, 0))
 
-    #Lives
+    # Lives
     for i in range(hearts):
         win.blit(heart, (width - hearts_x[i], 30))
 
-    #Floor
+    # Floor
     win.blit(floor, (floor_x, floor_y))
 
-    #Steps
+    # Steps
     for x in range(len(steps_x)):
         step = pygame.transform.scale(step, (steps_width[x], steps_height[x]))
         # if(player)
@@ -83,25 +84,21 @@ while run:
         # else:
         #     while(steps_x[x] >= 0):
         #         steps_x[x] -= 5
-        
+
         # if(player_y <= steps_y[x]):
         #     player_y = steps_y[x]
 
+        # steps_x[x] =  steps_x[x] + 10 if steps_x[x] < width else steps_x[x] - 10
+        if (player_x >= steps_x[x] and player_x <= (steps_x[x] + steps_width[x]) and jump and player_y >= steps_y[x] and player_y <= (steps_y[x] + steps_height[x])):
+            player_y = steps_y[x] - p_height
 
-        # steps_x[x] =  steps_x[x] + 10 if steps_x[x] < width else steps_x[x] - 10 
-        if(player_x >= steps_x[x] and player_x <= (steps_x[x] + steps_width[x])):
-            if(player_y >= steps_y[x] and player_y <= (steps_y[x] + steps_height[x])):
-                player_y = steps_y[x] - p_height
-        else:
-            player_y -= 10
-            
         win.blit(step, (steps_x[x], steps_y[x]))
 
-    #Pumpkin
+    # Pumpkin
     for i in range(10):
-        win.blit(pumpkin, (i * 10, i+10));
+        win.blit(pumpkin, (i * 10, i+10))
 
-    #Player
+    # Player
     win.blit(player, (player_x, player_y))
     userInput = pygame.key.get_pressed()
     if userInput[pygame.K_LEFT] and player_x > 0:
@@ -118,21 +115,22 @@ while run:
             jump = False
             vel_y = 10
 
-    #Floor collision
-    if((player_y + p_height) >= floor_y):
+    # Floor collision
+    if ((player_y + p_height) >= floor_y):
         player_y -= 30
 
-
-    #Game over condition
+    # Game over condition
     if hearts <= 0:
         print("Game Over")
         pygame.quit()
 
-
     # background music
-    # mixer.music.load('background')
-    
-    
-    pygame.display.update()
+    mixer.init()
+    # Loading the song
+    mixer.music.load("./music/halloween_music.mp3")
+    # Start playing the song
+    mixer.music.play()
+
+pygame.display.update()
 
 pygame.quit()
