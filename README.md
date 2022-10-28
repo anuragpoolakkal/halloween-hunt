@@ -1,4 +1,4 @@
-# Pygame by Bit Lords
+# halloween Scavanger Hunt
 Pygame project by Bit Lords developed on Proxy22.
 
 We developed a halloween themed survival game which has three levels. The player will be promoted to second and final levels after succesfully completeing previous levels. After completing all three levels, player will win the game.
