@@ -22,7 +22,7 @@ font = pygame.font.SysFont("arialblack", 40)
 #define colours
 TEXT_COL = (255, 255, 255)
 
-bg_img = pygame.image.load(os.path.join("images", "bitlords_poster.png"))
+bg_img = pygame.image.load(os.path.join("images", "bitlords_poster2.png"))
 screen.blit(bg_img, (0, 0))
 
 #load button images

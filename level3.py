@@ -29,7 +29,7 @@ def level3():
     height = 800
 
     win = pygame.display.set_mode((width, height))
-    bg_img = pygame.image.load(os.path.join("images", "halloween2.png"))
+    bg_img = pygame.image.load(os.path.join("images", "butk.png"))
     bg = pygame.transform.scale(bg_img, (width, height))
 
     i = 0
@@ -215,7 +215,8 @@ def level3():
                     score += 1
                     pumpkins_y[i] = -1000
 
-        if(score == 20):
+        if(score == 30):
+            print("YOU WON THE GAME!! 🎃🏆")
             main_menu()
             break;
 
