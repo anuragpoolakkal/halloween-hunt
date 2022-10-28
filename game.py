@@ -2,7 +2,7 @@ import pygame
 import os
 
 # shape parameters
-size = width, height = (1200, 600)
+size = width, height = (1200, 800)
 
 
 pygame.init()
