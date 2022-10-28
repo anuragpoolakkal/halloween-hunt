@@ -88,7 +88,9 @@ while run:
         #     player_y = steps_y[x]
 
         # steps_x[x] =  steps_x[x] + 10 if steps_x[x] < width else steps_x[x] - 10
-        if (player_x >= steps_x[x] and player_x <= (steps_x[x] + steps_width[x]) and jump and player_y >= steps_y[x] and player_y <= (steps_y[x] + steps_height[x])):
+        # if (player_x >= steps_x[x] and player_x <= (steps_x[x] + steps_width[x]) and jump and player_y >= steps_y[x] and player_y <= (steps_y[x] + steps_height[x])):
+        #     player_y = steps_y[x] - p_height
+        if(player_y <= steps_y[x] and player_x >= steps_x[x] and player_x <= (steps_x[x] + steps_width[x])):
             player_y = steps_y[x] - p_height
 
         win.blit(step, (steps_x[x], steps_y[x]))
@@ -102,7 +104,7 @@ while run:
     userInput = pygame.key.get_pressed()
     if userInput[pygame.K_LEFT] and player_x > 0:
         player_x -= vel_x
-    if userInput[pygame.K_RIGHT] and player_x < width:
+    if userInput[pygame.K_RIGHT] and player_x < width - p_width:
         player_x += vel_x
 
     if jump is False and userInput[pygame.K_SPACE]:
