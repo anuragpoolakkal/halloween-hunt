@@ -9,6 +9,6 @@ Arrow keys can be used for navigation. Press SPACE to jump. Enemies will be fall
 
 The player wins points on catching pumpkins and can get promoted to level to by winning 20 points. Level 2 will be harder and may needs more effort and concentration to pass. WInning 20 points in level 2 can promote the player to level 3, the final one and hardest of all. Hard earned 30 points is needed to win the final level and become the Champion!
 
-Music is added to improve in-game experience. 
+Music and sound effects are added to improve in-game experience. 
 
 Developing the game was a challenging and entertaining task and we learnt a lot from the 12 hours of development.
