@@ -2,7 +2,7 @@ import pygame
 import os
 
 # shape parameters
-size = width, height = (1200, 800)
+size = width, height = (1200, 600)
 
 
 pygame.init()
@@ -10,7 +10,8 @@ win = pygame.display.set_mode(size)
 bg_img = pygame.image.load(os.path.join("images", "level1_bg.png"))
 bg = pygame.transform.scale(bg_img, (1200, 800))
 
-width = 1200
+#width = 1200
+
 i = 0
 
 run = True
