@@ -29,7 +29,7 @@ def level3():
     height = 800
 
     win = pygame.display.set_mode((width, height))
-    bg_img = pygame.image.load(os.path.join("images", "butk.png"))
+    bg_img = pygame.image.load(os.path.join("images", "bg-3.png"))
     bg = pygame.transform.scale(bg_img, (width, height))
 
     i = 0
@@ -90,7 +90,7 @@ def level3():
     music.set_volume(0.05)
     music.play()
 
-    enemy_count = 3
+    enemy_count = 6
 
     enemies_y = [] 
     enemies_x = []
@@ -215,7 +215,7 @@ def level3():
                     score += 1
                     pumpkins_y[i] = -1000
 
-        if(score == 30):
+        if(score == 15):
             print("YOU WON THE GAME!! 🎃🏆")
             main_menu()
             break;

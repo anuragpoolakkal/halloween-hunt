@@ -225,7 +225,7 @@ def level1():
                     score_fx.play()
                     pumpkins_y[i] = -1000
 
-        if(score == 10):
+        if(score == 5):
             level2()
             break
 

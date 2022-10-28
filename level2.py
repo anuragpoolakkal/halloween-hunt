@@ -91,7 +91,7 @@ def level2():
     music.set_volume(0.05)
     music.play()
 
-    enemy_count = 3
+    enemy_count = 5
 
     enemies_y = [] 
     enemies_x = []
@@ -216,7 +216,7 @@ def level2():
                     score += 1
                     pumpkins_y[i] = -1000
 
-        if(score == 20):
+        if(score == 10):
             level3()
             break;
 
