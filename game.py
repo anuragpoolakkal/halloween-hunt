@@ -2,6 +2,7 @@ from http.client import PROXY_AUTHENTICATION_REQUIRED
 import pygame
 import os
 from pygame import mixer
+from random import randrange
 
 # Text Renderer
 def text_format(message, textFont, textSize, textColor):
@@ -64,7 +65,10 @@ floor = pygame.transform.scale(floor, (width, 50))
 step = pygame.image.load(os.path.join("images/floating_floor.png"))
 
 pumpkin = pygame.image.load(os.path.join("images/pumpkin.png"))
-pumpkin = pygame.transform.scale(pumpkin, (30, 30))
+pumpkin = pygame.transform.scale(pumpkin, (60, 60))
+
+bat = pygame.image.load(os.path.join("images/bat.png"))
+bat = pygame.transform.scale(bat, (30, 30))
 
 pumpkins = []
 
@@ -82,14 +86,29 @@ steps_x = [0, 400, 800, 0]
 hearts = 3
 hearts_x = [170, 120, 70]
 
-enemy1 = pygame.image.load(os.path.join("images/hoodieskelton.png"))
-enemy1 = pygame.transform.scale(enemy1, (60, 60))
-e1_x = 0
+enemy = pygame.image.load(os.path.join("images/hoodieskelton.png"))
+enemy = pygame.transform.scale(enemy, (60, 60))
+enemy_x = randrange(0, width)
+enemy_y = randrange(100, 200)
+
+pumpkin_y = randrange(0, 200)
 
 # background music
 music = pygame.mixer.Sound('music/halloween_music.mp3')
 music.set_volume(0.05)
-# music.play()
+music.play()
+
+enemy_count = 1
+enemies_x = []
+for i in range(enemy_count):
+    enemies_x.append(randrange(0, width))
+
+
+
+pumpkin_count = 1
+pumpkins_x = []
+for i in range(pumpkin_count):
+    pumpkins_x.append(randrange(0, width))
 
 while run:
     # pygame.time.delay(10)
@@ -105,9 +124,6 @@ while run:
     # Steps
     for x in range(len(steps_x)):
         step = pygame.transform.scale(step, (steps_width[x], steps_height[x]))
-        # if (player_y <= steps_y[x] and player_x >= steps_x[x] and player_x <= (steps_x[x] + steps_width[x])):
-        #     player_y = steps_y[x] - p_height
-
         win.blit(step, (steps_x[x], steps_y[x]))
 
     # Player
@@ -124,8 +140,6 @@ while run:
     if jump is True:
         player_y -= vel_y * 4
         vel_y -= 1
-        if (player_x >= steps_x[0] and player_x <= (steps_x[0] + steps_width[0]) and player_y >= steps_y[0] and player_y <= steps_y[0] + steps_height[0]):
-            player_y = steps_y[0]
         if vel_y < -10:
             jump = False
             vel_y = 10
@@ -137,11 +151,29 @@ while run:
     win.blit(floor, (floor_x, floor_y))
 
     # Pumpkin
-    for i in range(10):
-        win.blit(pumpkin, (i * 10, i+10))
+    pumpkin_y += 5
+    for i in range(pumpkin_count):
+        win.blit(pumpkin, (pumpkins_x[i], pumpkin_y))
+    if(pumpkin_y > height):
+        pumpkin_y = 0
+        pumpkins_x.clear()
+        for i in range(5):
+            pumpkins_x.append(randrange(0, width))
 
-    # Eemies
-    win.blit(enemy1, (e1_x, steps_y[3] - 50))
+    # Bat
+    for i in range(1):
+        win.blit(bat, (randrange(0, width), 100))
+        win.blit(bat, (randrange(0, width), 200))
+
+    # Enemies
+    enemy_y += 5
+    for i in range(enemy_count):
+        win.blit(enemy, (enemies_x[i], enemy_y))
+    if(enemy_y > height):
+        enemy_y = 0
+        enemies_x.clear()
+        for i in range(5):
+            enemies_x.append(randrange(0, width))
 
     # Floor collision
     if ((player_y + p_height) >= floor_y):
