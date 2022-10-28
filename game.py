@@ -1,27 +1,25 @@
 import pygame
+import os
 
-def treasureHunt():
-    pygame.init()
-    win = pygame.display.set_mode((1200, 800))
+pygame.init()
+win = pygame.display.set_mode((1200, 800))
+bg_img = pygame.image.load(os.path.join("images","level1_bg.png"))
+bg = pygame.transform.scale(bg_img, (1200, 800))
 
-    pygame.display.set_caption("Treasure Hunt by aqeelshamz")
-    bg = pygame.image.load("images/level1_bg.png")
-    win.blit(bg, (0,0))
+width = 1200
+i = 0
 
-    x = 25
-    y = 25
+run = True
+while run:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
 
-    width = 20
-    height = 20
+    win.fill((0,0,0))
 
-    speed = 2
+    #Create looping background
+    win.blit(bg, (0, 0))
 
-    run = True
+    pygame.display.update()
 
-    while run:
-
-        pygame.display.update()
-
-    pygame.quit()
-
-treasureHunt()
+pygame.quit()
