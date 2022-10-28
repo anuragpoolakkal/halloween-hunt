@@ -30,6 +30,7 @@ player = pygame.transform.scale(player, (p_width, p_height))
 player.convert()
 
 heart = pygame.image.load(os.path.join("images/heart.png"))
+heart = pygame.transform.scale(heart, (60, 60))
 
 floor = pygame.image.load(os.path.join("images/floor.png"))
 floor = pygame.transform.scale(floor, (width, 50))
@@ -62,6 +63,9 @@ while run:
     win.fill((0, 0, 0))
     win.blit(bg, (0, 0))
 
+    #Lives
+    win.blit(heart, (width - 70, 30))
+
     #Floor
     win.blit(floor, (floor_x, floor_y))
 
@@ -81,6 +85,9 @@ while run:
 
 
         # steps_x[x] =  steps_x[x] + 10 if steps_x[x] < width else steps_x[x] - 10 
+        if(jump):
+            if(player_x >= steps_x[x] and player_x <= steps_x[x]):
+                player_y = steps_y[x] + p_height
 
         win.blit(step, (steps_x[x], steps_y[x]))
 
@@ -108,6 +115,8 @@ while run:
     #Floor collision
     if((player_y + p_height) >= floor_y):
         player_y -= 30
+
+
 
     #heart
     
