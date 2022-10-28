@@ -27,4 +27,12 @@ while run:
 
     pygame.display.update()
 
+    # load player vehicle
+    ground_floor = pygame.image.load(os.path.join("images", "level1_land.png"))
+    # resize image
+    #car = pygame.transform.scale(car, (250, 250))
+    car_loc = ground_floor.get_rect()
+    car_loc.center = width/2, height*0.8
+    pygame.display.update()
+
 pygame.quit()
