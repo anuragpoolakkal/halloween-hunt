@@ -88,27 +88,28 @@ hearts_x = [170, 120, 70]
 
 enemy = pygame.image.load(os.path.join("images/hoodieskelton.png"))
 enemy = pygame.transform.scale(enemy, (60, 60))
-enemy_x = randrange(0, width)
-enemy_y = randrange(100, 200)
-
-pumpkin_y = randrange(0, 200)
 
 # background music
 music = pygame.mixer.Sound('music/halloween_music.mp3')
 music.set_volume(0.05)
 music.play()
 
-enemy_count = 1
+enemy_count = 3
+
+enemies_y = [] 
 enemies_x = []
 for i in range(enemy_count):
     enemies_x.append(randrange(0, width))
+    enemies_y.append(randrange(-200, 0))
 
 
 
-pumpkin_count = 1
+pumpkin_count = 3
 pumpkins_x = []
+pumpkins_y = []
 for i in range(pumpkin_count):
     pumpkins_x.append(randrange(0, width))
+    pumpkins_y.append(randrange(-200, 0))
 
 while run:
     # pygame.time.delay(10)
@@ -151,14 +152,16 @@ while run:
     win.blit(floor, (floor_x, floor_y))
 
     # Pumpkin
-    pumpkin_y += 5
     for i in range(pumpkin_count):
-        win.blit(pumpkin, (pumpkins_x[i], pumpkin_y))
-    if(pumpkin_y > height):
-        pumpkin_y = 0
+        win.blit(pumpkin, (pumpkins_x[i], pumpkins_y[i]))
+        pumpkins_y[i] += 5
+        
+    if(pumpkins_y[i] > height):
         pumpkins_x.clear()
+        pumpkins_y.clear()
         for i in range(5):
             pumpkins_x.append(randrange(0, width))
+            pumpkins_y.append(randrange(-100, 0))
 
     # Bat
     for i in range(1):
@@ -166,20 +169,41 @@ while run:
         win.blit(bat, (randrange(0, width), 200))
 
     # Enemies
-    enemy_y += 5
     for i in range(enemy_count):
-        win.blit(enemy, (enemies_x[i], enemy_y))
-    if(enemy_y > height):
-        enemy_y = 0
-        enemies_x.clear()
-        for i in range(5):
-            enemies_x.append(randrange(0, width))
+        win.blit(enemy, (enemies_x[i], enemies_y[i]))
+        enemies_y[i] += 5
+    
+        if(enemies_y[i] > height):
+            enemies_x.clear()
+            enemies_y.clear()
+            for i in range(5):
+                enemies_x.append(randrange(0, width))
+                enemies_y.append(randrange(-100, 0))
 
     # Floor collision
     if ((player_y + p_height) >= floor_y):
         player_y -= 30
 
+
+
+
+
+
+
+
+
     # Game over condition
+
+
+
+
+    # if car_loc[0] == car2_loc[0] and car2_loc[1] > car_loc[1] - 250:
+    #     car2_loc.center = right_lane, -200
+    #     hearts = hearts - 1
+    #     if(hearts == 0):
+    #         break
+
+
     if hearts <= 0:
         print("Game Over !!")
         pygame.quit()
