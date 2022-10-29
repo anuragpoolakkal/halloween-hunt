@@ -15,5 +15,5 @@ Developing the game was a challenging and entertaining task and we learnt a lot 
 
 To run this project:
 ```
- python ./main.py
+ python ./game.py
 ```
