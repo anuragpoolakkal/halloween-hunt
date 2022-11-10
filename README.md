@@ -14,6 +14,13 @@ Music and sound effects are added to improve in-game experience.
 Developing the game was a challenging and entertaining task and we learnt a lot from the 12 hours of development. We're planning to make further progress in this project.
 
 To run this project:
+
+First Install the pygame package
+```
+ pip install pygame
+```
+
+To run the game
 ```
  python ./game.py
 ```
